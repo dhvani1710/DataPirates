@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+		<title>The Data Pirates</title>
+		<script src = "GridArray.js"></script>	
+		<script src = "GridScript.js"></script>
+		<style>							/*all the styling has been done here*/
+			* {	box-sizing: border-box; }
+			html {
+				height : 100%;
+			}
+			body {
+				display: grid;
+				grid-template-columns: 75% 25%;
+				grid-template-rows: 99vh;
+				grid-gap: 0.2em;
+				}
+			body {
+  				margin: 0 auto;
+			  	max-width: 99vw;
+  				
+			}
+			
+			main {
+	  			background: #eaeaea;
+  				display: flex;
+  				align-items: center;
+				justify-content: center;
+			}
+			aside {
+	  			background: #eaeaea;
+  				display: grid;
+				align-items: top;
+				grid-template-rows : 5vh;
+				justify-content: center;
+				padding-top : 5px;
+			}
+
+			#Instructions{
+				background: rgba(255,255,0,0.3);
+				border-radius: 5px;
+				font-weight: bold;
+			}
+
+			.Button{
+				display: inline-block;
+				border-radius: 5px;
+				width: 24%;
+				text-align: center;
+				padding-left: 1px;
+			}
+
+			.control_button{
+				display: inline-block;
+				border-radius: 5px;
+				width: 32%;
+				top: 230%;
+				padding-right: 10px;
+				border-collapse: separate;
+				border-spacing: 15px;
+				text-align: center;
+			}
+
+			.box { 
+				border : 1px solid black ;
+				padding : 1vmin 1vmin ;
+				background-color: rgba(200,200,200,0.2);
+			 }
+
+			.row {
+				display : flex ;
+				justify-content: center ;
+			}
+			
+			footer {
+    				/*color: #333;*/
+				font-size: 70%;
+				text-align: center;
+				position: fixed;
+				/*width: 200px;*/
+				bottom: 10px;
+				left: 81%;
+   		    		/*margin-left: -100px;*/
+				background: rgba(255, 0, 255, 0.1);
+				padding: 5px;
+				border-radius: 5px;
+			}
+
+		</style>
+	</head>
+	<body >
+			<main>
+				<div id = "grid" class = "gridContainer">	<!-- grid to be added here-->
+				</div>
+			</main>
+			<aside>
+				<div align = "center">
+					<button type = "button" id = "Instructions" onclick = "instructionsAlert()">Instructions</button>	<!-- instructions button -->
+				</div>
+				<div id="pathDesignButtons" class="pathDesignPanel">							<!-- for selecting the action to be performed on box-click -->
+					<button type = "button" class = "Button" id = "Starting point">Starting Point</button>
+					<button type = "button" class = "Button" id = "Ending point">Destination Point</button>
+					<button type = "button" class = "Button" id = "Walls">Obstacles/ Walls</button>
+					<button type = "button" class = "Button" id = "Checkpoints">Check Points</button>
+						<i><p id = 'p' ></p></i>							<!-- current action guide -->
+				</div>
+				<div class = 'algorithmPanel' id="algo_panel" align = "left">
+					<p id = '1' align = "center">Choose algorithm </p>					<!-- radio buttons for choosing algo, only A* will work for now. -->
+					        <label><input type="radio" name="algo" value=1 checked /> A* </label><br>
+					        <label><input type="radio" name="algo" value=2 /> Breadth First Search </label><br>
+					        <label><input type="radio" name="algo" value=3 /> Dijkstra </label><br>
+					        <label><input type="radio" name="algo" value=4 /> Best First </label><br>
+						<br><label><input type = "checkbox" id = "biDirectional"/>Bi-directional</label>	<!-- yet to be implemented -->
+				</div>
+				<div id="play_panel" class="left_panel" align = "center">
+      					<button type = "button" id = "Start search" class="control_button" '>Let's begin!</button>	<!-- start button -->
+      					<button type = "button" id="Stop search" class="control_button">Stop</button>			<!-- stop button yet to be implemented -->
+
+  				</div>
+				<div>
+					<p id = 'coordinates' class = 'pointInfo'>Coordinates </p>	<!-- display coordiantes and main points -->
+					<p id = 'startPoint' class = 'pointInfo'></p>
+					<p id = 'endPoint' class = 'pointInfo'></p>	
+				</div>	
+				<div>	
+					<p>Number of rows : <input type="number" id="numberOfRows" min="2" max="42"></p> 	<!-- change grid size from here -->
+					<p>Number of columns : <input type="number" id="numberOfColumns" min="2" max="60"></p>
+					<button type = "button" class = "gid_button" onclick = "changeGridSize()">Reset grid</button>
+					<!-- <p id = "gridSize">Rows : 42, Columns : 60</p> -->
+				</div>
+			</aside>
+			
+		
+		<footer align> Check out the <a href = "https://github.com/dhvani1710/DataPirates.git">code</a> behind this fun.	<!-- source coed here -->
+   		</footer>
+		<script src = "GridArray.js"></script>
+		<script src = "GridScript.js"></script>
+		<!-- <script type="text/javascript" src="astar.js"></script>	<!-- only astar has been included for now--> -->
+		<!-- <script type="text/javascript" src="biastar.js"></script>  -->
+		<!-- <script type="text/javascript" src="bidijktra.js"></script>  -->
+		<!-- <script type="text/javascript" src="dijktra.js"></script>  -->
+		<!-- <script type="text/javascript" src="bestfirst.js"></script>  -->
+		<script type="text/javascript" src="bfs.js"></script> 
+		<!-- <script type="text/javascript" src="bibestfirst.js"></script>  -->
+		<!-- <script type="text/javascript" src="bibfs.js"></script>  -->
+
+	</body>
+</html>
