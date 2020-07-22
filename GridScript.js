@@ -209,7 +209,7 @@ function pathfinding() {
 	if(selectedAlgo == 3 && biDirectional_search == false){	bi += 'Dijkstra';	path= Dijkstra(array, start_i, start_j, end_i, end_j);	}
 	if(selectedAlgo == 4 && biDirectional_search == false){	bi += 'Best First Search';	path= BestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");}
 	if(selectedAlgo == 1 && biDirectional_search == true){	bi += 'Astar';	path= BiAstar(array,start_i,start_j,end_i,end_j);	alert("Kindly note that this may not be the shortest path");	}	
-	if(selectedAlgo == 2 && biDirectional_search == true){  bi +='Breadth First Search'; path = biBFS(array, start_i, start_j, end_i, end_j);       }
+	if(selectedAlgo == 2 && biDirectional_search == true){  bi +='Breadth First Search'; path = BiBFS(array, start_i, start_j, end_i, end_j);       }
 	if(selectedAlgo == 3 && biDirectional_search == true){	bi += 'Dijkstra';	path= BiDijkstra(array, start_i, start_j, end_i, end_j);	}
 	if(selectedAlgo == 4 && biDirectional_search == true){	bi += 'Best First Search';	path= BiBestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");	}
 
