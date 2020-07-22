@@ -1,15 +1,15 @@
-var given = [
-    [0, 0, 0, 0, 0],
-    [0, 1, 1, 0, 1],
-    [0, 0, 0, 0, 0],
-    [0, 1, 1, 0, 1],
-    [0, 0, 0, 0, 0]
-  ];
+// var given = [
+//     [0, 0, 0, 0, 0],
+//     [0, 1, 1, 0, 1],
+//     [0, 0, 0, 0, 0],
+//     [0, 1, 1, 0, 1],
+//     [0, 0, 0, 0, 0]
+//   ];
   
-  start_i = 0;
-  start_j = 0;
-  end_i = 4;
-  end_j = 4;
+//   start_i = 0;
+//   start_j = 0;
+//   end_i = 4;
+//   end_j = 4;
   
    var  startOpenList = [];
     var endOpenList=[];
@@ -190,11 +190,11 @@ var given = [
           
       
       
-       console.log("NO PATH");
+       //console.log("NO PATH");
       return [];
      
   }
-  BiBFS(given, start_i, start_j, end_i, end_j);
+  //BiBFS(given, start_i, start_j, end_i, end_j);
   
   
   
