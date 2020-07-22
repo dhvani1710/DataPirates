@@ -6,6 +6,7 @@ When resizing of array is done, the immediate next row and column after the spec
 The gird visible has size as specified by user. 
 The vlaues of the array elements are modified using the arrayManipulator() according to the clicked <div></div>
 */
+/*
 var array = [];
 for ( let i = 0; i < rows ; i++)
 {
@@ -17,4 +18,18 @@ for ( let i = 0; i < rows ; i++)
 	array.push(row);
 }
 
-
+*/
+var array = [];
+function setArray() 
+{
+	array = [];
+	for ( let i = 0; i < rows ; i++)
+	{
+		let row = [];
+		for( let j = 0; j < cols; j++)
+		{
+			row.push(0);
+		}
+		array.push(row);
+	}
+}
