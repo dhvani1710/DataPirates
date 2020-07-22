@@ -77,6 +77,7 @@ function _createGrid() {				//create the grid according to specified number of r
 	count_of_search = 0;		//search-count is 0 at the beginning for each grid
 	document.getElementById('startPoint').innerHTML = 'Starting from ' + start_i + ',' + start_j ;
 	document.getElementById('endPoint').innerHTML = 'Ending at ' + end_i + ',' + end_j;
+	path = [];
 }
 
 
@@ -155,9 +156,17 @@ function changeGridSize() {		// on clicking 'set grid' new rows and columns are 
 
 	rows = document.getElementById("numberOfRows").value;
 	cols = document.getElementById("numberOfColumns").value;
-	if( rows > 42 || cols > 60 ) {
+	if( rows > 42 || rows == 0 ) {
 		rows = 42;
+	}
+	if( rows < 2 ) {
+		rows = 2;
+	}
+	if( cols == 0 || cols > 60 ) {
 		cols = 60;
+	}
+	if( cols < 2 ) {
+		cols = 2;
 	}
 	_createGrid();			//grid is created again
 	document.getElementById('gridSize').innerHTML = 'Rows : ' + rows + ', Columns : '+ cols ;
