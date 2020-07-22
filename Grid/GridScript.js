@@ -10,6 +10,8 @@ var cols = 60;
 
 var actionFlag = 'W';		//to determine which action has to be performed on clicking of grid elements
 var selectedAlgo = 1;		//specify which algo is selected for searching
+var biDirectional_search = false;	//to implement bi_directional algo
+
 var start_i = 0 , start_j = 0;	//the coordinates of starting point
 
 var end_i = rows-1 , end_j = cols-1;	//the coordinates of destination point
@@ -20,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) { _createGrid(); }
 document.getElementById("Starting point").addEventListener("click", function(){ setActionFlag('S'); });				//setting the action-flag using buttons provided
 document.getElementById("Ending point").addEventListener("click", function(){ setActionFlag('E'); });
 document.getElementById("Walls").addEventListener("click", function(){ setActionFlag('W'); });
-document.getElementById("Checkpoints").addEventListener("click", function(){ setActionFlag('C'); });
 document.getElementById("Start search").addEventListener("click",function(){ count_of_search++; selectAlgo(); pathfinding();}); //increment the count_of_search, check the algo, start search 
 
 function setActionFlag(f) {
@@ -47,7 +48,7 @@ function instructionsAlert() {			//Instructions for the page
 }
 		
 function _createGrid() {				//create the grid according to specified number of rows and colmuns
-
+	setArray();
 	var gridRows = "";
 	var gridBoxes = "";
 	rowLength = cols;
@@ -61,12 +62,6 @@ function _createGrid() {				//create the grid according to specified number of r
 		}
 		gridRows += '<div class="row">' + gridBoxes + '</div>';				//boxes are added to rows
 	}
-	if( cols < 60 )						// so that size of walkable array is actually reduced and not just the display
-		for ( let k = 0; k < columnLength; k++)
-			array[k][j] = 1;			//the next column is set as obstacle
-	if( rows < 42 )
-		for ( let k = 0; k < rowLength; k++)		//the next row is set as obstacle
-			array[i][k] = 1;
 	var container = document.getElementById("grid");
 	container.innerHTML = gridRows;				//rows are added to existing html element
 	document.getElementById('p').innerHTML = "Select one of the given options to define your path. ";
@@ -113,9 +108,6 @@ function arrayManipulator( i , j ) {
 				array[i][j] = 1;
 			   } 
 			   break;
-		case 'C' : //array[i][j]='C';	//yet to implement for checkpoint
-			   //document.getElementById('coordinates').innerHTML = 'checkpoint' + i + '+' + j;
-			   break;
 		default :  array[i][j] = 0;
 	}
 }
@@ -155,10 +147,6 @@ function changeColorOfBox( i , j ) {
 			   }
 			   document.getElementById('coordinates').innerHTML = 'Pointing at ' + i + ',' + j + ' with value ' + array[i][j] ;
 			   break;
-		case 'C' : //array[i][j]='C';		//yet to implement for checkpoint
-			   //document.getElementById('coordinates').innerHTML = 'checkpoint' + i + '+' + j;
-			   //document.getElementById( ""+i+','+j ).style.backgroundColor = "white";
-			   break;
 		default :  array[i][j] = 0;
 	}
 }
@@ -183,6 +171,10 @@ function selectAlgo() {			//algo is selected using radio buttons
 		if(algoList[i].checked)
 		{	selectedAlgo = algoList[i].value;	}	//value indicating selected algo is stored in 'selectedAlgo'
 	}
+	if( document.getElementById("biDirectional").checked == true )	//for checking whether bi_directional option is checked or not in the checkbox
+	{	biDirectional_search = true;	}
+	else
+	{	biDirectional_search = false;	}
 }
 
 function pathfinding() {
@@ -193,14 +185,19 @@ function pathfinding() {
 		if( array[path[i][0]][path[i][1]] == 0)
 			cell.style.backgroundColor = "rgba(200,200,200,0.2)";
 	}
-	path = [];	//empty the path array from previous path
-	if(selectedAlgo == 1){	Astar(array,start_i,start_j,end_i,end_j);	}
-	//if(selectedAlgo == 2){	BFS(array, start_i, start_j, end_i, end_j);	}	//for other algos selected using radio buttons
-	//if(selectedAlgo == 3){	Dijktra(array, start_i, start_j, end_i, end_j);	}
-	//if(selectedAlgo == 4){	BestFirst(array, start_i, start_j, end_i, end_j);	}
+	path = [];
+	open=[];
+	close=[];	//empty the path array from previous path
+	if(selectedAlgo == 1 && biDirectional_search == false){	path= Astar(array,start_i,start_j,end_i,end_j);	}
+	if(selectedAlgo == 2){	path= BFS(array, start_i, start_j, end_i, end_j);	}	
+	if(selectedAlgo == 3 && biDirectional_search == false){	path= Dijktra(array, start_i, start_j, end_i, end_j);	}
+	if(selectedAlgo == 4 && biDirectional_search == false){	path= BestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");}
+	if(selectedAlgo == 1 && biDirectional_search == true){	path= BiAstar(array,start_i,start_j,end_i,end_j);	alert("Kindly note that this may not be the shortest path");	}	
+	if(selectedAlgo == 3 && biDirectional_search == true){	path= BiDijktra(array, start_i, start_j, end_i, end_j);	}
+	if(selectedAlgo == 4 && biDirectional_search == true){	path= BiBestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");	}
 
-	while( checkPath() == 0 )			//if path found was incomplete, re-run the pathfinding()
-	{	path = []; pathfinding(); }
+	if ( checkPath() == 0 )									//if path not found, alert
+	{	alert("There was an error finding the path. Please try again for another arrangement!");	}	
 	
 	var i;
 	for( i=0; i < path.length; i++)			//show the path found, by changing color of the corresponding grid box
@@ -211,6 +208,9 @@ function pathfinding() {
 				cell.style.backgroundColor = "pink";							//if not starting/destination point or obstacle then change the color
 
 	}
+	document.getElementById( ""+start_i+','+start_j ).style.backgroundColor = "green";
+	document.getElementById( ""+end_i+','+end_j ).style.backgroundColor = "red";
+
 
 }
 
