@@ -21,7 +21,7 @@ var path = [];*/
 //heuristic
 /***********************************/
 
-function heuristic(a, b) {
+function heuristic1(a, b) {
   var dx = a.x - b.x;
   var dy = a.y - b.y;
   dx = Math.abs(dx);
@@ -33,7 +33,7 @@ function heuristic(a, b) {
 //node
 /***********************************/
 
-function point(i, j, wall) {
+function point1(i, j, wall) {
   this.x = i;
   this.y = j;
 
@@ -51,7 +51,7 @@ function point(i, j, wall) {
 //FIND NEIGHBOURS
 /****************************************/
 
-function findneighbours(point, grid) {
+function findneighbours1(point, grid) {
   var i = point.x;
   var j = point.y;
 
@@ -93,7 +93,7 @@ function Astar(given, start_i, start_j, end_i, end_j) {
 
   for (var i = 0; i < c; i++) {
     for (var j = 0; j < r; j++) {
-      grid[i][j] = new point(i, j, given[i][j]);
+      grid[i][j] = new point1(i, j, given[i][j]);
     }
   }
   
@@ -143,7 +143,7 @@ function Astar(given, start_i, start_j, end_i, end_j) {
       close.push(current);
       
       //exploring neighbours
-      var neighbours = findneighbours(current, grid);
+      var neighbours = findneighbours1(current, grid);
 
       for (var i = 0; i < neighbours.length; i++) {
         var neighbour = neighbours[i];
@@ -157,7 +157,7 @@ function Astar(given, start_i, start_j, end_i, end_j) {
             neighbour.g = temp;
             open.push(neighbour);
           }
-          neighbour.h = heuristic(neighbour, end);
+          neighbour.h = heuristic1(neighbour, end);
           neighbour.f = neighbour.g + neighbour.h;
 
           neighbour.parent = current;
