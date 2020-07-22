@@ -54,7 +54,7 @@ function findneighboursd(point, grid) {
 
 
 //search
-function BiDijktra(given, start_i, start_j, end_i, end_j) {
+function BiDijkstra(given, start_i, start_j, end_i, end_j) {
 
   c = given.length;
   r = given[0].length;
@@ -249,4 +249,4 @@ var endclose = [];
   
 }
 
-//BiDijktra(given, start_i, start_j, end_i, end_j);
+//BiDijkstra(given, start_i, start_j, end_i, end_j);
