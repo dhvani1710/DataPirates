@@ -27,7 +27,7 @@ The prefix ***Bi*** for the last three finders in the above list stands for the 
 
 * On clicking *'Let's Begin'* , the path is displayed in the grid, and the name of the algorithm used is displayed. An alert box is displayed if the finder was unable to find the path.
 
-* An alert box warns the user if he select the algorithm which may not gurantee the shortest path.
+* An alert box warns the user if he selects the algorithm which may not gaurantee the shortest path.
 
 > Please note the algorithms use *Manhattan Heuristic* by default and diagonal movement is prohibited.
 
