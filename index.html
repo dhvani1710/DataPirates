@@ -4,7 +4,7 @@
 		<meta charset = "utf-8">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
 		<title>The Data Pirates</title>
-		<style> /*all the styling has been done here*/
+		<style>							/*all the styling has been done here*/
 			* {	box-sizing: border-box; }
 			html {
 				height : 100%;
@@ -85,9 +85,8 @@
 				padding: 5px;
 				border-radius: 5px;
 			}
-</style>
-<!-- <link rel = "stylesheet" type = "text/css" href = "https://github.com/dhvani1710/DataPirates/blob/master/main.css" /> -->
-	
+
+		</style>
 	</head>
 	<body >
 			<main>
@@ -110,12 +109,11 @@
 					        <label><input type="radio" name="algo" value=2 /> Breadth First Search </label><br>
 					        <label><input type="radio" name="algo" value=3 /> Dijkstra </label><br>
 					        <label><input type="radio" name="algo" value=4 /> Best First </label><br>
-						<br><label><input type = "checkbox" id = "biDirectional"/>Bi-directional</label>
+						<br><label><input type = "checkbox" id = "biDirectional"/>Bi-directional</label>	<!-- yet to be implemented -->
+					<p id = 'algoSelected' align = "center"></p>
 				</div>
 				<div id="play_panel" class="left_panel" align = "center">
-      					<button type = "button" id = "Start search" class="control_button">Let's begin!</button>	<!-- start button -->
-	       				<button type = "button" id="Stop search" class="control_button">Stop</button>			<!-- stop button yet to be implemented -->
-
+      					<button type = "button" id = "Start search" class="control_button" onclick = "pathfinding()">Let's begin!</button>	<!-- start button -->
   				</div>
 				<div>
 					<p id = 'coordinates' class = 'pointInfo'>Coordinates </p>	<!-- display coordiantes and main points -->
@@ -125,7 +123,7 @@
 				<div>	
 					<p>Number of rows : <input type="number" id="numberOfRows" min="2" max="42"></p> 	<!-- change grid size from here -->
 					<p>Number of columns : <input type="number" id="numberOfColumns" min="2" max="60"></p>
-					<button type = "button" class = "gid_button" onclick = "changeGridSize()">Reset grid</button>
+					<button type = "button" class = "gid_button" id="resetGrid" onclick = "changeGridSize()">Reset grid</button>
 					<p id = "gridSize">Rows : 42, Columns : 60</p>
 				</div>
 			</aside>
