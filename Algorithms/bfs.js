@@ -18,7 +18,7 @@
 //node
 /***********************************/
 
-function point(i, j, wall) {
+function point2(i, j, wall) {
   this.x = i;
   this.y = j;
 
@@ -31,7 +31,7 @@ function point(i, j, wall) {
 //FIND NEIGHBOURS
   /****************************************/
 
-function findneighbours(point, grid) {
+function findneighbours2(point, grid) {
   var i = point.x;
   var j = point.y;
 
@@ -62,9 +62,11 @@ var close = [];
 var path = [];
 */
 open = [];
+close=[];
+
   c = given.length;
   r = given[0].length;
-document.getElementById('1').innerHTML += '# ' c + ' ' + r;
+//document.getElementById('1').innerHTML += '# ' c + ' ' + r;
   var grid = new Array(c);
 
   for (var i = 0; i < c; i++) {
@@ -74,7 +76,7 @@ document.getElementById('1').innerHTML += '# ' c + ' ' + r;
 
   for (var i = 0; i < c; i++) {
     for (var j = 0; j < r; j++) {
-      grid[i][j] = new point(i, j, !given[i][j]);
+      grid[i][j] = new point2(i, j, !given[i][j]);
     }
   }
 
@@ -98,7 +100,7 @@ document.getElementById('1').innerHTML += '# ' c + ' ' + r;
 
       var temp = current;
 
-      while (temp.parent) {
+      while (temp.parent!=null) {
         path.push([temp.x, temp.y]);
         temp = temp.parent;
       }
@@ -106,14 +108,14 @@ document.getElementById('1').innerHTML += '# ' c + ' ' + r;
       path.push([start.x, start.y]);
       path.reverse();
 
-      console.log(path);
+      //console.log(path);
       return path;
     } 
     else 
     {
       close.push(current);
 
-      var neighbours = findneighbours(current, grid);
+      var neighbours = findneighbours2(current, grid);
 
       for (var i = 0; i < neighbours.length; i++) 
       {
