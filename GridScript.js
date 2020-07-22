@@ -190,10 +190,10 @@ function pathfinding() {
 	close=[];	//empty the path array from previous path
 	if(selectedAlgo == 1 && biDirectional_search == false){	path= Astar(array,start_i,start_j,end_i,end_j);	}
 	if(selectedAlgo == 2){	path= BFS(array, start_i, start_j, end_i, end_j);	}	
-	if(selectedAlgo == 3 && biDirectional_search == false){	path= Dijktra(array, start_i, start_j, end_i, end_j);	}
+	if(selectedAlgo == 3 && biDirectional_search == false){	path= Dijkstra(array, start_i, start_j, end_i, end_j);	}
 	if(selectedAlgo == 4 && biDirectional_search == false){	path= BestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");}
 	if(selectedAlgo == 1 && biDirectional_search == true){	path= BiAstar(array,start_i,start_j,end_i,end_j);	alert("Kindly note that this may not be the shortest path");	}	
-	if(selectedAlgo == 3 && biDirectional_search == true){	path= BiDijktra(array, start_i, start_j, end_i, end_j);	}
+	if(selectedAlgo == 3 && biDirectional_search == true){	path= BiDijkstra(array, start_i, start_j, end_i, end_j);	}
 	if(selectedAlgo == 4 && biDirectional_search == true){	path= BiBestFirst(array, start_i, start_j, end_i, end_j);	alert("Kindly note that this may not be the shortest path");	}
 
 	if ( checkPath() == 0 )									//if path not found, alert
