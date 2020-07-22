@@ -18,11 +18,12 @@ var end_i = rows-1 , end_j = cols-1;	//the coordinates of destination point
 
 var count_of_search = 0;		//keeping a count of how many times search button has been clicked for a particular grid
 
-document.addEventListener("DOMContentLoaded", function(event) { _createGrid(); });	 					//create the grid when the content loading is complete
+document.addEventListener("DOMContentLoaded", function(event) { changeGridSize(); });
+//document.getElemnetById("resetGrid").addEventListener("click", function(){ changeGridSize(); });	 					//create the grid when the content loading is complete
 document.getElementById("Starting point").addEventListener("click", function(){ setActionFlag('S'); });				//setting the action-flag using buttons provided
 document.getElementById("Ending point").addEventListener("click", function(){ setActionFlag('E'); });
 document.getElementById("Walls").addEventListener("click", function(){ setActionFlag('W'); });
-document.getElementById("Start search").addEventListener("click",function(){ count_of_search++; selectAlgo(); pathfinding();}); //increment the count_of_search, check the algo, start search 
+//document.getElementById("Start search").addEventListener("click",function(){ count_of_search++; selectAlgo(); pathfinding();}); //increment the count_of_search, check the algo, start search 
 
 function setActionFlag(f) {
 	actionFlag=f;
@@ -169,7 +170,7 @@ function changeGridSize() {		// on clicking 'set grid' new rows and columns are 
 		cols = 2;
 	}
 	_createGrid();			//grid is created again
-	document.getElementById('gridSize').innerHTML = 'Rows : ' + rows + ', Columns : '+ cols ;
+	document.getElementById('gridSize').innerHTML = 'Rows : ' + array.length + ', Columns : '+ array[0].length ;
 }
 
 function selectAlgo() {			//algo is selected using radio buttons
@@ -188,6 +189,9 @@ function selectAlgo() {			//algo is selected using radio buttons
 
 function pathfinding() {
 
+	count_of_search++; 
+	selectAlgo();
+	
 	for( i=1; i < path.length-1; i++){			//clearing the previous path color
 		var s = path[i][0] + "," + path[i][1] ;
 		var cell = document.getElementById(s);
@@ -197,6 +201,8 @@ function pathfinding() {
 	path = [];
 	open=[];
 	close=[];	//empty the path array from previous path
+	document.getElementById('algoSelected').innerHTML = "Selected algo is : " + selectedAlgo + ' ' + biDirectional_search;
+	
 	if(selectedAlgo == 1 && biDirectional_search == false){	path= Astar(array,start_i,start_j,end_i,end_j);	}
 	if(selectedAlgo == 2){	path= BFS(array, start_i, start_j, end_i, end_j);	}	
 	if(selectedAlgo == 3 && biDirectional_search == false){	path= Dijkstra(array, start_i, start_j, end_i, end_j);	}
@@ -235,5 +241,3 @@ function checkPath() {
 	}
 	return (flag_start && flag_end);	 //check is both starting and ending point are present in the obtained path
 }
-
-
