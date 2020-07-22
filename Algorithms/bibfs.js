@@ -34,7 +34,8 @@
     
   }
   
-  
+  // FIND NEIGHBOURS
+  /**********************************/
   function findneighbours(point, grid) {
     var i = point.x;
     var j = point.y;
@@ -54,20 +55,21 @@
     if (j > 0 && grid[i][j - 1].wall == 0) {
       neighbours.push(grid[i][j - 1]);
     }
+    
+    // Return neighbour;
+    
     return neighbours;
   }
   
-  
+// Search 
+ /**********************************************************/ 
   function BiBFS(given, start_i, start_j, end_i, end_j){
        c = given.length;
-    r = given[0].length;
+       r = given[0].length;
     
-   
-  
     var grid = new Array(c);
   
     for (var i = 0; i < c; i++) {
-  
       grid[i] = new Array(r);
     }
   
@@ -77,8 +79,8 @@
       }
     }
   
-    var start = grid[start_i][start_j];
-    var end = grid[end_i][end_j];
+    var start = grid[start_i][start_j];  // start node
+    var end = grid[end_i][end_j];    // end node
     
     var temp, neighbour,neighbours;
   
@@ -87,15 +89,17 @@
       endOpenList.push(end);
       
        while(startOpenList.length>0 && endOpenList.length>0)
-       {
+       {  
+           // continue
          var current1= startOpenList.shift();
          var current2=  endOpenList.shift();
          
-        
-      
-          
+         
+         // endParent of current1 found
+         
          if(current1.endParent)
            {  
+               // console.log("Path Found);
                path=[];
                
                temp = current1;
@@ -118,15 +122,20 @@
        
                  path.push([end.x, end.y]);
                
+             // console.log(path);
+             
                console.log(path);
-               return path;
+             
+             // return path;
+               return path;  
               
            }
            
-           
+           // startParent of current2 found
            
             if(current2.startParent)
            {  
+             // console.log("Path found");
                path=[];
                
                temp = current2;
@@ -137,6 +146,8 @@
            }
   
             path.push([start.x, start.y]);
+             
+             // reverse path
              path.reverse();
                
                temp=current2.endParent;
@@ -149,7 +160,11 @@
        
                  path.push([end.x, end.y]);
                
+             // console.log(path); 
+             
                console.log(path);
+             
+             // return path
                return path;
                
            }
@@ -157,17 +172,19 @@
            // search from start
               
              startCloseList.push(current1);
-  
+            
+         // console.log(current1);
+         
             neighbours = findneighbours(current1, grid);
   
              for ( i = 0; i < neighbours.length; i++) 
            {
              neighbour = neighbours[i];
-             if (!startCloseList.includes(neighbour)&&  !startOpenList.includes(neighbour)) 
-            {
+              if (!startCloseList.includes(neighbour)&&  !startOpenList.includes(neighbour)) 
+             {
               neighbour.startParent = current1;
               startOpenList.push(neighbour);
-            }
+             }
            } 
           
           
