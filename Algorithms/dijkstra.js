@@ -51,7 +51,7 @@ function findneighbours3(point, grid)
 
 //search
 
-function Dijktra(given, start_i, start_j, end_i, end_j) {
+function Dijkstra(given, start_i, start_j, end_i, end_j) {
   path=[];
   open=[];
   close=[];
@@ -163,4 +163,4 @@ function Dijktra(given, start_i, start_j, end_i, end_j) {
 
 }
 
-//Dijktra(given, start_i, start_j, end_i, end_j);
+//Dijkstra(given, start_i, start_j, end_i, end_j);
