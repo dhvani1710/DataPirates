@@ -225,7 +225,7 @@ function pathfinding() {
 			var s = path[i][0] + ',' + path[i][1] ;
 			var cell = document.getElementById(s);
 			if(( (path[i][0] == start_i && path[i][1] == start_j ) || (path[i][0] == end_i && path[i][1] == end_j ) || (array[path[i][0]][path[i][1]] == 1)) == 0)	
-				cell.style.backgroundColor = #FF69B4;							//if not starting/destination point or obstacle then change the color
+				cell.style.backgroundColor = "pink";							//if not starting/destination point or obstacle then change the color
 
 	}
 	document.getElementById( ""+start_i+','+start_j ).style.backgroundColor = "green";
